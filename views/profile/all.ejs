@@ -1,0 +1,24 @@
+<%- include("../partials/header")%>
+<%- include("../partials/navbar")%>
+
+<div class="container" style="margin-top: 5rem;">
+
+ <div class="row">
+    <%for(let user of users){%>
+     <div class="col-md-2">
+    
+      <div class="card">
+          <h2><%= user.username %> </h2>
+          <% if(user.profile){%>
+          <img src="<%= user.profile.pic%>"  alt="hii">
+          <% } else { %>
+            <img src="https://res.cloudinary.com/pallishree-saswat/image/upload/v1620385155/vy8fcz43bokpxszi4vl4.png" class="img-fluid"  alt="hii"> 
+            <% } %>
+      </div>
+    
+     </div>
+     <% } %>
+ </div>
+ </div>
+ </div>
+</div>

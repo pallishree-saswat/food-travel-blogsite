@@ -1,0 +1,58 @@
+  
+<%- include("../partials/header")%>
+<%- include("../partials/navbar")%>
+
+
+
+<div class="container" style="margin-top:5rem;width:80vw;margin-bottom: 11rem;">
+
+            <form class="validated-form" action="/profile" enctype="multipart/form-data" method="POST"  style="max-width:70%;margin:10px auto" novalidate>
+                <div class="mb-3">
+             
+                    <label for="img" class="form-label">Profile Pic</label>
+                    <input type="file" class="form-control" id="img" placeholder="profile pic" name="pic" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                
+                  </div>
+               
+                <div class="mb-3">
+                  <label for="name" class="form-label">Status</label>
+                  <input type="text" class="form-control" id="name" placeholder="status" name="status" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Company</label>
+                    <input type="text" class="form-control" id="name" placeholder="company" name="company" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Location</label>
+                    <input type="text" class="form-control" id="name" placeholder="Location" name="location" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                  </div>
+                 
+           
+                <div class="mb-3">
+                    <label for="desc" class="form-label">Bio</label>
+                    <textarea class="form-control" id="bio" cols="30" rows="5" name="bio" required></textarea>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                  </div>
+               
+                <button type="submit" class="btn btn-success">Submit</button>
+              </form>
+        
+   
+</div>
+
+
+<%- include("../partials/footer")%>

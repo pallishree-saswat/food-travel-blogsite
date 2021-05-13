@@ -1,0 +1,60 @@
+  
+<%- include("../partials/header")%>
+<%- include("../partials/navbar")%>
+
+
+
+<div class="container" style="margin-top:5rem;width:80vw;margin-bottom: 11rem;">
+
+            <form class="validated-form" action="/posts" enctype="multipart/form-data" method="POST"  style="max-width:70%;margin:10px auto" novalidate>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="post Name" name="post[name]" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Category</label>
+                  
+                  <select class="form-control" name="category">
+                       <option>please select</option>
+                       
+                       <%for(let c of categories){%>
+                         
+                           <option value="<%=c._id%>" >
+                             <%=c.name%>
+                           </option>
+                         <%}%>
+                  </select>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="mb-3">
+             
+                  <label for="img" class="form-label">Image URL</label>
+                  <input type="file" class="form-control" id="img" placeholder="Image URL" name="img" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+              
+                </div>
+     
+        
+                <div class="mb-3">
+                    <label for="desc" class="form-label">Description</label>
+                    <textarea class="form-control" id="desc" cols="30" rows="5" name="post[desc]" required></textarea>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                  </div>
+               
+                <button type="submit" class="btn btn-success">Submit</button>
+              </form>
+        
+   
+</div>
+
+
+<%- include("../partials/footer")%>

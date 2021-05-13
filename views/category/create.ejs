@@ -1,0 +1,25 @@
+  
+<%- include("../partials/header")%>
+<%- include("../partials/navbar")%>
+
+
+
+<div class="container" style="margin-top:5rem;width:80vw;margin-bottom: 11rem;">
+
+            <form class="validated-form" action="/category"  method="POST"  style="max-width:70%;margin:10px auto" novalidate>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="Category Name" name="name" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+              
+                <button type="submit" class="btn btn-success">Submit</button>
+              </form>
+        
+   
+</div>
+
+
+<%- include("../partials/footer")%>

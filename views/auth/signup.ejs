@@ -1,0 +1,66 @@
+<%- include("../partials/header")%>
+<%- include("../partials/navbar")%>
+
+
+
+<div class="container" style="margin-top:5rem;width:80vw;margin-bottom: 11rem;">
+           
+        <!--     <form class="validated-form" action="/register" method="POST" style="max-width:70%;margin:10px auto" novalidate>
+                <%- include("../partials/flash")%>
+                <h4 class="display-4">Sign Up</h4>
+                <div class="mb-3">
+                  <label for="username" class="form-label">Username</label>
+                  <input type="text" class="form-control" id="username" placeholder="Useraname" name="username" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                  </div>
+               
+                <button type="submit" class="btn btn-success">Register</button>
+              </form> -->
+
+              <%- include("../partials/flash")%>
+              <div class="content">
+          
+                <div class=" text text-center">SignUp</div>
+                <form class="validated-form" action="/register" method="POST" style="max-width:70%;margin:10px auto" novalidate>
+                 
+                  <div class="field">
+                  <input type="text" class="form-control"  id="username" placeholder="Useraname" name="username" required>
+                 </div>
+              
+                <div class="field mb-2">
+                <input type="email"  class="form-control" id="email" placeholder="Email" name="email" required>
+                 </div>
+              
+                  <div class="field">
+                    <input type="password" class="form-control"  id="password" placeholder="Password" name="password" required>
+                 
+                  </div>
+                  
+                  <button>Sign up</button>
+                  <div class="signup text-center">Already a member?
+                    <a href="/login">signin now</a>
+                  </div>
+                </form>
+            </div>
+        
+   
+</div>
+
+
+<%- include("../partials/footer")%>

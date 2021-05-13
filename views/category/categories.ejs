@@ -1,0 +1,42 @@
+
+<%- include("../partials/header")%>
+<%- include("../partials/navbar")%>
+
+<!-- <div class= "head1" style="margin-top: 3rem;">
+    <div class="row text-center mb-3 justify-content-center head" style="background-color: #0077b6; color: #fff; height: 200px;">
+        <h2>Thoughts || Stories || News || Blogs</h2>
+    </div>
+</div> -->
+
+<div class="container" style="margin-top: 5rem;">
+    <%- include("../partials/flash")%>
+
+   
+
+    <div class="row">
+        <div class="col-md-10">
+    <h3>All Post of <%=category.name %> Category </h3>
+            <div class="row">
+                <%for(let post of posts){%>
+                <div class="col-md-4">
+                    <div class="card main-card" style="border: none;">
+                        <img src="<%= post.img %>" height="200px" width="200px" class="card-img-top" alt="...">
+                        <div class="card-body">
+                           <!--  <span>Git/github</span> -->
+                          <h5 class="card-title"  style=" color: rgb(10, 10, 9);"><%= post.name %></h5>
+                          <p class="card-text" style="font-size: 17px;"><%= post.snippet %>...</p>
+                         
+                          <p  class="link" style="text-decoration: none; color: rgb(34, 30, 30);"> Updated on<%=post.timeCreated.toLocaleDateString() %></p>
+                          <a href="/posts/<%= post._id %>">Read More</a>
+                          <!--   <a href="single.html" class="link" style="text-decoration: none; color: rgb(31, 23, 23);">by pallishree</a> -->
+                        <!--   <p  class="link" style="text-decoration: none; color: rgb(156, 153, 153);">20 june 2020</p> -->
+                        </div>
+                      </div>
+                </div>
+                <%}%>
+           </div>
+        </div>
+
+        <div class="col-md-2">
+    
+          </div> 

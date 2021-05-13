@@ -1,0 +1,90 @@
+<%- include("../partials/header")%>
+<%- include("../partials/navbar")%>
+
+
+<div class="container" style="margin-top: 6rem;">
+  <a href="/posts" class="btn btn-outline-secondary">Go Back</a>
+    <%- include("../partials/flash")%>
+    <div class="row justify-content-center" >
+     <div class="col-md-8">
+    
+  
+    <h2><%=post.name%></h2>
+    <h2><%=post.viewCount%> views</h2>
+    <% if(currentUser.id == post.user) {%>
+    <a href="/profile" class="link" style="text-decoration: none; color: rgb(197, 51, 51);">by <%= post.postedBy%></a>
+    <% } else { %>
+      <a href="/user/<%=post.user._id%>" class="link" style="text-decoration: none; color: rgb(197, 51, 51);">by <%= post.postedBy%></a>
+    <% } %>
+
+    <p  class="link" style="text-decoration: none; color: rgb(34, 30, 30);"><%=post.timeCreated.toLocaleDateString() %></p>
+ 
+    <img src="<%=post.img%>" width="100%" height="40%" alt="12">       
+    <p class="mt-4"><%-post.desc%> </p>
+
+     <% if(currentUser.id == post.user) {%>
+
+            <div class="d-flex">
+                  <a href="/posts/<%=post._id%>/edit" class="btn btn-warning" style="border-radius: 50%;"><i class="fas fa-edit"></i></a>
+                  <div class="ml-3">
+                   <form action="/posts/<%=post._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger" style="border-radius: 50%;"> <i class="fas fa-trash"></i></button>
+                  </form>
+                  </div> 
+                </div>
+            <% } %>
+           
+            <form action="/like/<%= post._id %>?_method=PUT" method="POST">
+              <button class="btn btn-success m-2"><i class="fas fa-thumbs-up"></i></button> <%- post.likes.length %>
+            </form>
+            
+            <form action="/unlike/<%= post._id %>?_method=PUT" method="POST">
+              <button class="btn btn-success m-2"><i class="fas fa-thumbs-down"></i></button> 
+            </form>
+
+            <form  class="validated-form mt-3" action="/posts/<%=post._id%>/review" method="POST" style="max-width:70%;" novalidate>
+  
+       
+           <p>
+       
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <i class="fas fa-plus"></i>   Add comment
+            </button>
+          </p>
+          <div class="collapse" id="collapseExample">
+            <input type="text" class="form-control" name="comment" placeholder="Write your comment" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button type="submit" class="btn btn-success mt-2">Submit</button>
+          </div>
+       
+       
+      </form>
+
+
+
+    <%for(let review of post.reviews){%>
+    <div class="replies" id="reply1">
+      <div class="d-flex justify-content-start flex-row align-items-center card reply_card py-1 ">
+          <div class=" reply_img mx-2 align-self-center ">
+              <img src="https://img.icons8.com/doodle/48/000000/user-male-skin-type-5.png" />
+          </div>
+          <div class="reply_text__left">
+              <p class="blog_title "> <span class="font-weight-bold text-capitalize"><strong><%=review.postedBy%></strong> , </span> may 12, 2021  
+                <% if(currentUser.id == review.user) {%>
+                <form action="/review/<%=post._id%>/<%=review._id%>?_method=DELETE" method="POST">
+                  <button class="btn btn-danger" style="border-radius: 50%;"> <i class="fas fa-trash"></i></button>
+                </form>
+              <% } %>
+              </p>
+              <p><%=review.comment%></p>
+          </div>
+      </div>
+  </div>
+  <%}%>
+    </div>
+    </div>
+    
+    
+    
+    </div>
+
+    <%- include("../partials/footer")%>
