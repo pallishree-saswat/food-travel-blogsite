@@ -74,15 +74,13 @@ app.use((req, res, next) => {
 
 
 
-
-
 //routes
 app.use(postRoutes);
 app.use(authRoutes);
 app.use(categoryRoutes);
 app.use(profileRoutes);
 
-
+//server
 app.listen(3000, () => {
     console.log("Server Started AT PORT 3000");
 })

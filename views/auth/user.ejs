@@ -25,12 +25,16 @@
            <% } %>
             </div>
             <div class="d-flex" style="margin: 5px auto; padding: 5px;">
+              <%if(currentUser.following.includes(user._id)){ %>
+                <form  action="/unfollow/<%= user._id %>?_method=PUT" method="POST">
+                  <button class="btn btn-success m-2">UnFollow</button>
+                </form>
+              <% } else { %>
+           
               <form action="/follow/<%= user._id %>?_method=PUT" method="POST">
                 <button class="btn btn-success m-2">Follow</button>
               </form>
-              <form  action="/unfollow/<%= user._id %>?_method=PUT" method="POST">
-                <button class="btn btn-success m-2">UnFollow</button>
-              </form>
+              <% } %>
             </div>
         </div>
 
@@ -68,6 +72,90 @@
 
         <% } %>
     </div>
+<!-- 
+    <div class="col-md-4">
+      <% if(user){%>
+      <div class="post-author text-center m-0">
+            <div class="text-center">
+            <div class="author-avatar">
+              <% if( user.profile && user.profile.pic){ %>
+                 <img src="<%= user.profile.pic %>" class="img-fluid rounded">
+                 <% } else { %>
+                   <img src="https://res.cloudinary.com/pallishree-saswat/image/upload/v1620385155/vy8fcz43bokpxszi4vl4.png" class="img-fluid"  alt="hii"> 
+                <% } %>
+             </div>
+              <h5 class="text-capitalize"><%= user.username %></h5>
+             
+              <div class=" d-flex flex-wrap justify-content-center">
+              <p class=" px-2">Followings-: <strong><%= user.following.length%></strong> </p>
+              <p class=" px-2">Followers-:<strong><%= user.followers.length%></strong>  </p>
+              <p class=" px-2">Posts-: <strong><%= user.posts.length %></strong> </p>
+              </div>
+              
+              <%if(user && user.profile){%>
+               <p>status- <%=user.profile.status%> </p>
+               <p>Location- <%=user.profile.location%> </p>
+               <p>Company- <%=user.profile.company%> </p>
+               <p>Bio- <%=user.profile.bio%> </p>
+              <% } %>
+       
+
+          
+
+           <% if( user.profile &&  user.profile._id) { %>
+            <button class="btn">  <a href="/profile/<%= user.profile._id %>/edit">Edit Profile</a></button>
+
+              <form action="/uploadpic/<%= user.profile._id %>?_method=PUT" enctype="multipart/form-data" method="POST" >
+                <input type="file" name="pic" placeholder="profile pic" required>
+                <button>submit</button>
+              </form>
+              <% } else { %> 
+     
+              <button class="btn"><a href="/profile/new">Add Profile</a></button>
+
+              <% } %>
+            </div>
+
+           
+
+      </div>
+
+<div style="display: flex;justify-content: space-around; padding: 10px;">
+
+
+<p><button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+Followers <%= user.followers.length%>
+</button>
+</p>
+<div class="collapse" id="collapseExample">
+<%for(let name of user.followers){%>
+<ul>
+  <li><%= name.username %>  </li>
+
+</ul>
+
+<% } %>
+</div>
+
+<p> <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
+Followings <%= user.following.length%>
+</a>
+</p>
+<div class="collapse" id="collapseExample1">
+<%for(let name of user.following){%>
+<ul>
+  <li><%= name.username %>  </li>
+</ul>
+
+<% } %>
+</div>
+</div>
+
+<% } %>
+</div>  -->
+
+
+    <!-- users posts -->
 
     <div class="col-md-9 ml-3">
       <div class="card " style="max-width: 540px; border: none; background-color: transparent;">

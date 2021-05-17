@@ -18,7 +18,7 @@ router.get('/', async(req, res) => {
 })
 
 // Display all the posts
-router.get('/posts', async(req, res) => {
+router.get('/home', async(req, res) => {
     
     try {
         const posts=await Post.find({}).sort({ timeCreated: 'desc' });
@@ -228,12 +228,12 @@ router.delete('/review/:id/:review_id', isLoggedIn, async (req, res) => {
 
 
 
-//like/unlike a post
+//like a post
 router.put('/like/:id',isLoggedIn, async (req,res) => {
     try {
-      const post = await Post.findById(req.params.id);
 
-      //check if the post has already been liked
+    const post = await Post.findById(req.params.id);
+    //check if the post has already been liked
       if(post.likes.filter(like => like.user.toString() === req.user.id).length > 0) 
       {
          return res.status(400).json({msg :" post already liked"})
@@ -255,6 +255,7 @@ router.put('/like/:id',isLoggedIn, async (req,res) => {
 
 router.put('/unlike/:id',isLoggedIn, async (req,res) => {
     try {
+      
       const post = await Post.findById(req.params.id);
 
       //check if the post has already been liked

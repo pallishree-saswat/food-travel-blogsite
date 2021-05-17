@@ -56,31 +56,6 @@ router.post('/profile',isLoggedIn, upload.single('pic'),  async (req,res) => {
 })
 
 
-router.get('/me',isLoggedIn, async (req,res) => {
-  
-    try {
-       //const user = await User.findById({id : req.user._id}).populate('posts')
-        //console.log(user)
-        const profile = await  Profile.findOne({user : req.user._id}).populate(
-            'user'
-         )
-    //  console.log(profile)
-        if(!profile){
-            return res.status(400).json({ msg : 'There is no profile for this user'})
-        }
-   
-        let obj = { profile}
-          res.render('profile/showAll',{obj})
-        //res.json(obj)
-        
-    } catch (err) {
-        console.log(err.message)
-        res.status(500).send('server error')
-    }
-   
-   })
-
-
 // Get the edit form
 router.get('/profile/:id/edit',isLoggedIn,  async(req, res) => {
 

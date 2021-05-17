@@ -19,7 +19,7 @@
             <div class="row">
                 <%for(let post of posts){%>
                 <div class="col-md-4">
-                    <div class="card main-card" style="border: none;">
+                    <div class="card main-card mb-4" style="border: none;">
                         <img src="<%= post.img %>" height="200px" width="200px" class="card-img-top" alt="...">
                         <div class="card-body">
                            <!--  <span>Git/github</span> -->
@@ -38,14 +38,14 @@
         </div>
 
         <div class="col-md-2">
-          <div class="card text-dark bg-light  mb-3">
+       <!--    <div class="card text-dark bg-light  mb-3">
         <h5 class="card-header">Categories</h5>
         <div class="card-body p-3">
             <%for(let post of categories){%>
                 <h6><a href="/category/<%= post.slug %>"><%=post.name %></a>  </h6>
             <% } %> 
         </div>  
-          </div> 
+          </div>  -->
 
           <div class="card text-dark bg-light  mb-3">
             <h5 class="card-header">most viewed post</h5>

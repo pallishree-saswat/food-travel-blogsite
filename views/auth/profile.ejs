@@ -1,40 +1,49 @@
 <%- include("../partials/header")%>
 <%- include("../partials/navbar")%>
+<link rel="stylesheet" href="/css/profile.css">
 
 <div class="container" style="margin-top: 5rem;">
     <div class="row">
-        <div class="col-md-3">
+      <!-- my profile -->
+   <div class="col-md-4">
             <% if(user){%>
-            <div class=" card">
-                <div class="card-header text-center"> Profile </div>
-                <div class="card-body text-center">
-                    <h5 class="card-title text-capitalize"><%= user.username %></h5>
-                    <p class="card-text"><%= user.email %> </p>
-                    <p class="card-text">Followings-:<%= user.following.length%> </p>
-                    <p class="card-text">Followers-:<%= user.followers.length%> </p>
-                    <p class="card-text">Posts-:<%= user.posts.length %> </p>
+            <div class="post-author text-center m-0">
+                  <div class="text-center">
+                  <div class="author-avatar">
+                    <% if( user.profile && user.profile.pic){ %>
+                       <img src="<%= user.profile.pic %>" class="img-fluid rounded">
+                       <% } else { %>
+                         <img src="https://res.cloudinary.com/pallishree-saswat/image/upload/v1620385155/vy8fcz43bokpxszi4vl4.png" class="img-fluid"  alt="hii"> 
+                      <% } %>
+                   </div>
+                    <h5 class="text-capitalize"><%= user.username %></h5>
+                   
+                    <div class=" d-flex flex-wrap justify-content-center">
+                    <p class=" px-2">Followings-: <strong><%= user.following.length%></strong> </p>
+                    <p class=" px-2">Followers-:<strong><%= user.followers.length%></strong>  </p>
+                    <p class=" px-2">Posts-: <strong><%= user.posts.length %></strong> </p>
+                    </div>
+                    
                     <%if(user && user.profile){%>
                      <p>status- <%=user.profile.status%> </p>
-                     <p>status- <%=user.profile.location%> </p>
-                     <p>status- <%=user.profile.company%> </p>
-                     <p>status- <%=user.profile.bio%> </p>
+                     <p>Location- <%=user.profile.location%> </p>
+                     <p>Company- <%=user.profile.company%> </p>
+                     <p>Bio- <%=user.profile.bio%> </p>
+                    <% } %>
+             
 
-                     <% } %>
-               <% if( user.profile && user.profile.pic){ %>
-                <img src="<%= user.profile.pic %>" class="img-fluid">
-                <% } %>
+                
 
                  <% if( user.profile &&  user.profile._id) { %>
-                  <button class="btn btn-primary">  <a href="/profile/<%= user.profile._id %>/edit">Edit Profile</a></button>
+                  <button class="btn">  <a href="/profile/<%= user.profile._id %>/edit">Edit Profile</a></button>
 
                     <form action="/uploadpic/<%= user.profile._id %>?_method=PUT" enctype="multipart/form-data" method="POST" >
-                      <input type="file" name="pic" required>
+                      <input type="file" name="pic" placeholder="profile pic" required>
                       <button>submit</button>
                     </form>
-
-                 <% } else { %> 
+                    <% } else { %> 
            
-                    <button class="btn btn-primary"><a href="/profile/new">Add Profile</a></button>
+                    <button class="btn"><a href="/profile/new">Add Profile</a></button>
 
                     <% } %>
                   </div>
@@ -74,20 +83,36 @@
   </div>
   </div>
 
-            <% } %>
-    </div>
-   
-    <div class="col-md-7"> 
- 
-    <div class="card " style="max-width: 540px; border: none; background-color: transparent;">
+   <% } %>
+ </div> 
+
+
+   <!-- my posts -->
+   <div class="col-md-8">
+   <div class="links">
+    <ul>
+      <li data-view="list-view" class="li-list active">
+      <i class="fas fa-th-list"></i>
+      List View</li>
+      <li data-view="grid-view" class="li-grid">
+      <i class="fas fa-th-large"></i>
+      Grid View</li>
+    </ul>
+  </div>
+  <div class="row">
+  <div class="col-md-12"> 
+  
+    <div class="view_main">
+    <div class="view_wrap list-view" style="display: block;">
+     <div class="card " style="max-width: 540px; border: none; background-color: transparent;">
         <%if(user && user.posts){%>
-            <%for(let post of user.posts){%>
+        <%for(let post of user.posts){%>
         <div class="row g-0 mb-2 main-card" >
          
           <div class="col-md-3">
             <img src="<%= post.img %>" alt="..." width="100%" height="100%">
           </div>
-          <div class="col-md-8">
+          <div class="col-md-9">
             <div class="card-body">
               <h5 class="card-title"  ><a href="/posts/<%= post._id %>"><%=post.name %></a> </h5>
               <p class="card-text"><%= post.snippet %> ...</p>
@@ -99,11 +124,39 @@
 
         <% } %>
       </div>
+    </div>
+  </div>
+</div>
+      <!-- grid view -->
+      <div class="row">
+        <div class="col-md-12">
+      <div class="view_wrap grid-view" style="display: none;">
+        <%if(user && user.posts){%>
+          <%for(let post of user.posts){%>
+        <div class="view_item">
+          <div class="vi_left">
+            <img src="<%= post.img %>" alt="..." width="100%" height="100%">
+          </div>
+          <div class="vi_right">
+            <p class="title"><a href="/posts/<%= post._id %>"><%=post.name %></a></p>
+            <p class="mt-2"><%= post.snippet %> ...</p>
+          <!--   <div class="btn">View More</div> -->
+          </div>
         </div>
+        <% } %>
+        <% } %>
+    </div>
+  </div>
+  </div>
+  </div>
+</div>
+    
 
+   <!-- profile -->
    
        
     </div>
 </div>
 
+<script src="/js/script.js"></script>
 <%- include("../partials/footer")%>

@@ -21,7 +21,7 @@ const validateUserUpdatePassword = require('../validation/updatePassword')
 
 router.get('/users',isLoggedIn,async(req,res) => {
     const users = await User.find({}).populate('profile',['status','pic','bio','company','location'])
-    console.log(users)
+    //console.log(users)
     res.render('profile/all', {users})
    });
 
@@ -41,7 +41,7 @@ router.post('/register', async (req, res) => {
         const user = new User({ username: req.body.username, email: req.body.email });
         const newUser = await User.register(user, req.body.password);
         req.flash('success', 'Registered Successfully');
-        res.redirect('/posts');
+        res.redirect('/home');
     }
     catch (e) {
         req.flash('error', e.message);
@@ -64,7 +64,7 @@ router.post('/login',
         }
     ), (req, res) => {
         req.flash('success', `Welcome Back!! ${req.user.username}`)
-        res.redirect('/posts');
+        res.redirect('/home');
 });
 
 
@@ -79,7 +79,7 @@ router.get('/profile', isLoggedIn, async(req, res) => {
         .populate('followers' ,['_id' , 'username'])
         .populate('following' ,['_id' , 'username'])
       
-        console.log(user)
+        //console.log(user)
 
         res.render('auth/profile',{user}); 
     } catch (e) {
@@ -101,7 +101,7 @@ router.get('/user/:id',isLoggedIn,async(req,res) => {
  .populate('followers' ,['_id' , 'username'])
  .populate('following' ,['_id' , 'username'])
  
- console.log(user)
+ //console.log(user)
  res.render('auth/user', {user})
 });
 
